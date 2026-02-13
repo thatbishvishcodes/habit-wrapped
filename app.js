@@ -1,3 +1,21 @@
+const HYPE_LINES = [
+  "you locked in",
+  "slay bestie",
+  "okayyyyy growth era",
+  "you ate that",
+  "control looks good on you",
+  "main character discipline",
+  "absolute star behavior",
+  "no vape just power",
+  "bestie you did THAT",
+  "hold the line legend",
+  "this is your villain arc but healthy"
+];
+
+function pickHypeLine() {
+  return HYPE_LINES[Math.floor(Math.random() * HYPE_LINES.length)];
+}
+
 function parseTimestamp(ts) {
   // 13-02-26 07:27 PM
   const m = ts.trim().match(/^(\d{2})-(\d{2})-(\d{2})\s+(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
@@ -196,6 +214,8 @@ document.getElementById("generate").addEventListener("click", async () => {
   document.getElementById("streakD").textContent = streakD;
   document.getElementById("topWindow").textContent = topWindow;
   document.getElementById("badge").textContent = `Control Score: ${score}`;
+
+  document.getElementById("hypeLine").textContent = pickHypeLine();
 
   document.getElementById("download").disabled = false;
 
