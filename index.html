@@ -1,0 +1,224 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2867
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!doctype html>\
+<html lang="en">\
+<head>\
+  <meta charset="utf-8" />\
+  <meta name="viewport" content="width=device-width,initial-scale=1" />\
+  <title>Habit Wrapped</title>\
+  <style>\
+    :root\{\
+      --bg1:#070712;\
+      --bg2:#0b0b1d;\
+      --neon1:#7C3AED;\
+      --neon2:#22D3EE;\
+      --neon3:#F472B6;\
+      --text:#F5F5FF;\
+      --muted:rgba(245,245,255,.72);\
+      --card:rgba(255,255,255,.06);\
+      --stroke:rgba(255,255,255,.12);\
+    \}\
+    *\{box-sizing:border-box\}\
+    body\{\
+      margin:0;\
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;\
+      color:var(--text);\
+      background:\
+        radial-gradient(1200px 800px at 20% 10%, rgba(124,58,237,.35), transparent 60%),\
+        radial-gradient(1000px 700px at 80% 20%, rgba(34,211,238,.28), transparent 55%),\
+        radial-gradient(900px 600px at 60% 90%, rgba(244,114,182,.22), transparent 55%),\
+        linear-gradient(180deg, var(--bg1), var(--bg2));\
+      min-height:100vh;\
+      padding:28px;\
+      display:flex;\
+      gap:24px;\
+      align-items:flex-start;\
+      justify-content:center;\
+      flex-wrap:wrap;\
+    \}\
+    .panel\{\
+      width: 420px;\
+      padding:20px;\
+      border-radius:22px;\
+      background: rgba(255,255,255,.06);\
+      border: 1px solid rgba(255,255,255,.10);\
+      backdrop-filter: blur(10px);\
+    \}\
+    .panel h1\{margin:0 0 12px 0;font-size:22px\}\
+    .row\{margin:12px 0\}\
+    label\{display:block;color:var(--muted);font-weight:700;font-size:13px;margin-bottom:8px\}\
+    input[type="file"], select\{\
+      width:100%;\
+      padding:12px 12px;\
+      border-radius:14px;\
+      border:1px solid rgba(255,255,255,.14);\
+      background: rgba(0,0,0,.20);\
+      color:var(--text);\
+      outline:none;\
+    \}\
+    button\{\
+      width:100%;\
+      padding:12px 14px;\
+      border-radius:14px;\
+      border:1px solid rgba(255,255,255,.16);\
+      background: linear-gradient(135deg, rgba(124,58,237,.55), rgba(34,211,238,.35), rgba(244,114,182,.38));\
+      color:var(--text);\
+      font-weight:900;\
+      font-size:14px;\
+      letter-spacing:.02em;\
+      cursor:pointer;\
+    \}\
+    button.secondary\{\
+      margin-top:10px;\
+      background: rgba(255,255,255,.08);\
+      border:1px solid rgba(255,255,255,.14);\
+      font-weight:800;\
+    \}\
+    .hint\{color:var(--muted);font-size:12px;line-height:1.4;margin-top:10px\}\
+    /* Wrapped card */\
+    .canvasWrap\{width:420px\}\
+    .canvas\{\
+      width:1080px;\
+      height:1920px;\
+      padding:80px;\
+      border-radius:48px;\
+      position:relative;\
+      overflow:hidden;\
+      transform-origin: top left;\
+      transform: scale(0.35);\
+      box-shadow: 0 30px 120px rgba(0,0,0,.55);\
+      border: 1px solid rgba(255,255,255,.12);\
+      background:\
+        radial-gradient(1200px 800px at 20% 10%, rgba(124,58,237,.35), transparent 60%),\
+        radial-gradient(1000px 700px at 80% 20%, rgba(34,211,238,.28), transparent 55%),\
+        radial-gradient(900px 600px at 60% 90%, rgba(244,114,182,.22), transparent 55%),\
+        linear-gradient(180deg, var(--bg1), var(--bg2));\
+    \}\
+    .glow\{\
+      position:absolute;inset:40px;border-radius:48px;\
+      background: linear-gradient(135deg, rgba(124,58,237,.14), rgba(34,211,238,.10) 45%, rgba(244,114,182,.10));\
+      filter: blur(22px);\
+      z-index:0;\
+    \}\
+    .header\{position:relative;z-index:1;margin-bottom:56px\}\
+    .kicker\{letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:900;font-size:18px\}\
+    .title\{font-size:76px;font-weight:950;line-height:1.04;margin-top:14px\}\
+    .sub\{margin-top:18px;color:var(--muted);font-size:22px\}\
+    .pill\{display:inline-block;padding:8px 14px;border-radius:999px;background: rgba(255,255,255,.08);border:1px solid var(--stroke);color:var(--text);font-weight:800\}\
+    .grid\{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:22px\}\
+    .card\{\
+      padding:28px;border-radius:28px;background: var(--card);border: 1px solid var(--stroke);\
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);backdrop-filter: blur(10px);min-height:190px;\
+    \}\
+    .card.big\{\
+      grid-column: 1 / -1;min-height:240px;padding:34px;\
+      background: linear-gradient(135deg, rgba(124,58,237,.20), rgba(34,211,238,.12) 55%, rgba(244,114,182,.14));\
+      border: 1px solid rgba(255,255,255,.18);\
+    \}\
+    .label\{color:var(--muted);font-size:20px;font-weight:800;letter-spacing:.02em\}\
+    .value\{margin-top:18px;font-size:68px;font-weight:950;letter-spacing:-.02em\}\
+    .unit\{font-size:28px;font-weight:900;color:rgba(245,245,255,.78);margin-left:6px\}\
+    .hint2\{margin-top:14px;color:rgba(245,245,255,.74);font-size:20px;font-weight:700\}\
+    .footer\{position:absolute;left:80px;right:80px;bottom:70px;display:flex;align-items:center;justify-content:space-between;color:var(--muted);z-index:1\}\
+    .badge\{padding:12px 18px;border-radius:16px;background: rgba(255,255,255,.08);border: 1px solid var(--stroke);font-weight:900;color:var(--text)\}\
+    .fine\{font-size:16px\}\
+  </style>\
+</head>\
+<body>\
+  <div class="panel">\
+    <h1>Habit Wrapped Generator</h1>\
+\
+    <div class="row">\
+      <label>Upload habits_log.csv</label>\
+      <input id="file" type="file" accept=".csv,text/csv" />\
+      <div class="hint">Use the same CSV you are already appending to from Shortcuts.</div>\
+    </div>\
+\
+    <div class="row">\
+      <label>Habit</label>\
+      <select id="habit">\
+        <option value="VAPE_FREE">VAPE_FREE</option>\
+        <option value="FOCUS">FOCUS</option>\
+      </select>\
+    </div>\
+\
+    <div class="row">\
+      <label>Period</label>\
+      <select id="period">\
+        <option value="month">This month (based on latest entry)</option>\
+        <option value="week">This week (based on latest entry)</option>\
+      </select>\
+    </div>\
+\
+    <div class="row">\
+      <button id="generate">Generate Wrapped</button>\
+      <button class="secondary" id="download" disabled>Download PNG</button>\
+    </div>\
+\
+    <div class="hint" id="status">Upload CSV and generate.</div>\
+  </div>\
+\
+  <div class="canvasWrap">\
+    <div id="card" class="canvas">\
+      <div class="glow"></div>\
+\
+      <div class="header">\
+        <div class="kicker" id="periodLabel">MONTHLY WRAPPED</div>\
+        <div class="title" id="title">Vape Free Wrapped</div>\
+        <div class="sub">Habit: <span class="pill" id="habitLabel">VAPE_FREE</span></div>\
+      </div>\
+\
+      <div class="grid">\
+        <div class="card big">\
+          <div class="label">Total vape free time</div>\
+          <div class="value"><span id="totalH">0</span><span class="unit">h</span> <span id="totalM">0</span><span class="unit">m</span></div>\
+          <div class="hint2"><span id="wins">0</span> wins logged</div>\
+        </div>\
+\
+        <div class="card">\
+          <div class="label">Longest single stretch</div>\
+          <div class="value"><span id="maxM">0</span><span class="unit">m</span></div>\
+          <div class="hint2">Top hold</div>\
+        </div>\
+\
+        <div class="card">\
+          <div class="label">Average per win</div>\
+          <div class="value"><span id="avgM">0</span><span class="unit">m</span></div>\
+          <div class="hint2">Steady builds</div>\
+        </div>\
+\
+        <div class="card">\
+          <div class="label">Best day</div>\
+          <div class="value" id="bestDay">\'97</div>\
+          <div class="hint2"><span id="bestDayM">0</span>m total</div>\
+        </div>\
+\
+        <div class="card">\
+          <div class="label">Longest streak</div>\
+          <div class="value"><span id="streakD">0</span><span class="unit">d</span></div>\
+          <div class="hint2">Days with at least 1 win</div>\
+        </div>\
+\
+        <div class="card">\
+          <div class="label">Most common window</div>\
+          <div class="value" id="topWindow">\'97</div>\
+          <div class="hint2">Easiest zone</div>\
+        </div>\
+      </div>\
+\
+      <div class="footer">\
+        <div class="badge" id="badge">Control Score: 0</div>\
+        <div class="fine">Generated locally in your browser</div>\
+      </div>\
+    </div>\
+  </div>\
+\
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>\
+  <script src="app.js"></script>\
+</body>\
+</html>}
