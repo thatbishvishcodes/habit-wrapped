@@ -4,27 +4,35 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Habit Wrapped</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Permanent+Marker&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg1:#070712;
       --bg2:#0b0b1d;
-      --neon1:#7C3AED;
-      --neon2:#22D3EE;
-      --neon3:#F472B6;
+      --neon1:#8B5CF6; /* ultraviolet */
+      --neon2:#14B8A6; /* teal */
+      --neon3:#FF4D4D; /* coral red */
       --text:#F5F5FF;
       --muted:rgba(245,245,255,.72);
       --card:rgba(255,255,255,.06);
       --stroke:rgba(255,255,255,.12);
     }
+
     *{box-sizing:border-box}
+
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-family: "Manrope", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
       background:
-        radial-gradient(1200px 800px at 20% 10%, rgba(124,58,237,.35), transparent 60%),
-        radial-gradient(1000px 700px at 80% 20%, rgba(34,211,238,.28), transparent 55%),
-        radial-gradient(900px 600px at 60% 90%, rgba(244,114,182,.22), transparent 55%),
+        radial-gradient(1200px 800px at 20% 10%, rgba(139,92,246,.35), transparent 60%),
+        radial-gradient(1000px 700px at 80% 20%, rgba(20,184,166,.22), transparent 55%),
+        radial-gradient(900px 600px at 60% 90%, rgba(255,77,77,.16), transparent 55%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
       min-height:100vh;
       padding:28px;
@@ -34,6 +42,7 @@
       justify-content:center;
       flex-wrap:wrap;
     }
+
     .panel{
       width: 420px;
       padding:20px;
@@ -42,9 +51,24 @@
       border: 1px solid rgba(255,255,255,.10);
       backdrop-filter: blur(10px);
     }
-    .panel h1{margin:0 0 12px 0;font-size:22px}
+
+    .panel h1{
+      margin:0 0 12px 0;
+      font-size:22px;
+      font-weight:900;
+      letter-spacing:-.01em;
+    }
+
     .row{margin:12px 0}
-    label{display:block;color:var(--muted);font-weight:800;font-size:13px;margin-bottom:8px}
+
+    label{
+      display:block;
+      color:var(--muted);
+      font-weight:800;
+      font-size:13px;
+      margin-bottom:8px
+    }
+
     input[type="file"], select{
       width:100%;
       padding:12px 12px;
@@ -54,31 +78,42 @@
       color:var(--text);
       outline:none;
     }
+
     button{
       width:100%;
       padding:12px 14px;
       border-radius:14px;
       border:1px solid rgba(255,255,255,.16);
-      background: linear-gradient(135deg, rgba(124,58,237,.55), rgba(34,211,238,.35), rgba(244,114,182,.38));
+      background: linear-gradient(135deg, rgba(139,92,246,.55), rgba(20,184,166,.30), rgba(255,77,77,.30));
       color:var(--text);
       font-weight:950;
       font-size:14px;
       letter-spacing:.02em;
       cursor:pointer;
     }
+
     button:disabled{
       opacity:.45;
       cursor:not-allowed;
     }
+
     button.secondary{
       margin-top:10px;
       background: rgba(255,255,255,.08);
       border:1px solid rgba(255,255,255,.14);
       font-weight:900;
     }
-    .hint{color:var(--muted);font-size:12px;line-height:1.4;margin-top:10px}
 
+    .hint{
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.4;
+      margin-top:10px
+    }
+
+    /* Wrapped card */
     .canvasWrap{width:420px}
+
     .canvas{
       width:1080px;
       height:1920px;
@@ -91,41 +126,198 @@
       box-shadow: 0 30px 120px rgba(0,0,0,.55);
       border: 1px solid rgba(255,255,255,.12);
       background:
-        radial-gradient(1200px 800px at 20% 10%, rgba(124,58,237,.35), transparent 60%),
-        radial-gradient(1000px 700px at 80% 20%, rgba(34,211,238,.28), transparent 55%),
-        radial-gradient(900px 600px at 60% 90%, rgba(244,114,182,.22), transparent 55%),
+        radial-gradient(1200px 800px at 20% 10%, rgba(139,92,246,.35), transparent 60%),
+        radial-gradient(1000px 700px at 80% 20%, rgba(20,184,166,.22), transparent 55%),
+        radial-gradient(900px 600px at 60% 90%, rgba(255,77,77,.16), transparent 55%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
     }
+
+    /* grain overlay */
+    .canvas::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:url("https://grainy-gradients.vercel.app/noise.svg");
+      opacity:.08;
+      mix-blend-mode: overlay;
+      pointer-events:none;
+      z-index:0;
+    }
+
     .glow{
       position:absolute;inset:40px;border-radius:48px;
-      background: linear-gradient(135deg, rgba(124,58,237,.14), rgba(34,211,238,.10) 45%, rgba(244,114,182,.10));
+      background: linear-gradient(135deg, rgba(139,92,246,.14), rgba(20,184,166,.10) 45%, rgba(255,77,77,.10));
       filter: blur(22px);
       z-index:0;
     }
-    .header{position:relative;z-index:1;margin-bottom:56px}
-    .kicker{letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:950;font-size:18px}
-    .title{font-size:76px;font-weight:950;line-height:1.04;margin-top:14px}
-    .sub{margin-top:18px;color:var(--muted);font-size:22px}
-    .pill{display:inline-block;padding:8px 14px;border-radius:999px;background: rgba(255,255,255,.08);border:1px solid var(--stroke);color:var(--text);font-weight:900}
-    .grid{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:22px}
-    .card{
-      padding:28px;border-radius:28px;background: var(--card);border: 1px solid var(--stroke);
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);backdrop-filter: blur(10px);min-height:190px;
+
+    /* big background word */
+    .bgWord{
+      position:absolute;
+      left:-40px;
+      top:520px;
+      font-family:"Space Grotesk", ui-sans-serif, system-ui;
+      font-weight:700;
+      font-size:220px;
+      letter-spacing:-.04em;
+      color:rgba(245,245,255,.06);
+      transform: rotate(-12deg);
+      z-index:0;
+      user-select:none;
+      pointer-events:none;
     }
+
+    /* sticker */
+    .sticker{
+      position:absolute;
+      right:90px;
+      top:210px;
+      padding:12px 18px;
+      border-radius:16px;
+      background: rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow: 0 14px 50px rgba(0,0,0,.45);
+      transform: rotate(6deg);
+      z-index:2;
+    }
+
+    .sticker .scribble{
+      font-family:"Permanent Marker", cursive;
+      font-size:22px;
+      color:rgba(245,245,255,.92);
+      letter-spacing:.01em;
+      white-space:nowrap;
+    }
+
+    .header{position:relative;z-index:1;margin-bottom:56px}
+
+    .kicker{
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:950;
+      font-size:18px
+    }
+
+    .title{
+      font-family:"Space Grotesk", ui-sans-serif, system-ui;
+      font-size:76px;
+      font-weight:700;
+      line-height:1.04;
+      margin-top:14px
+    }
+
+    .sub{margin-top:18px;color:var(--muted);font-size:22px}
+
+    .pill{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      background: rgba(255,255,255,.08);
+      border:1px solid var(--stroke);
+      color:var(--text);
+      font-weight:900
+    }
+
+    .grid{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px
+    }
+
+    .card{
+      padding:28px;
+      border-radius:28px;
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      min-height:190px;
+    }
+
     .card.big{
-      grid-column: 1 / -1;min-height:240px;padding:34px;
-      background: linear-gradient(135deg, rgba(124,58,237,.20), rgba(34,211,238,.12) 55%, rgba(244,114,182,.14));
+      grid-column: 1 / -1;
+      min-height:240px;
+      padding:34px;
+      background: linear-gradient(135deg, rgba(139,92,246,.20), rgba(20,184,166,.10) 55%, rgba(255,77,77,.10));
       border: 1px solid rgba(255,255,255,.18);
     }
-    .label{color:var(--muted);font-size:20px;font-weight:900;letter-spacing:.02em}
-    .value{margin-top:18px;font-size:68px;font-weight:950;letter-spacing:-.02em}
-    .unit{font-size:28px;font-weight:900;color:rgba(245,245,255,.78);margin-left:6px}
-    .hint2{margin-top:14px;color:rgba(245,245,255,.74);font-size:20px;font-weight:800}
-    .footer{position:absolute;left:80px;right:80px;bottom:70px;display:flex;align-items:center;justify-content:space-between;color:var(--muted);z-index:1}
-    .badge{padding:12px 18px;border-radius:16px;background: rgba(255,255,255,.08);border: 1px solid var(--stroke);font-weight:950;color:var(--text)}
+
+    .label{
+      color:var(--muted);
+      font-size:20px;
+      font-weight:900;
+      letter-spacing:.02em
+    }
+
+    .value{
+      font-family:"Space Grotesk", ui-sans-serif, system-ui;
+      margin-top:18px;
+      font-size:68px;
+      font-weight:700;
+      letter-spacing:-.02em
+    }
+
+    .unit{
+      font-size:28px;
+      font-weight:900;
+      color:rgba(245,245,255,.78);
+      margin-left:6px
+    }
+
+    .hint2{
+      margin-top:14px;
+      color:rgba(245,245,255,.74);
+      font-size:20px;
+      font-weight:800
+    }
+
+    /* scribble underline */
+    .scribbleUnderline{
+      position:relative;
+      display:inline-block;
+      padding-bottom:14px;
+    }
+
+    .scribbleUnderline::after{
+      content:"";
+      position:absolute;
+      left:-6px;
+      right:-6px;
+      bottom:2px;
+      height:14px;
+      background: rgba(20,184,166,.55);
+      border-radius:999px;
+      transform: rotate(-2deg);
+      clip-path: polygon(0% 70%, 6% 45%, 14% 60%, 22% 35%, 30% 58%, 38% 40%, 46% 63%, 54% 38%, 62% 60%, 70% 42%, 78% 62%, 86% 44%, 94% 60%, 100% 52%, 100% 100%, 0% 100%);
+    }
+
+    .footer{
+      position:absolute;
+      left:80px;right:80px;bottom:70px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      color:var(--muted);
+      z-index:1
+    }
+
+    .badge{
+      font-family:"Space Grotesk", ui-sans-serif, system-ui;
+      padding:12px 18px;
+      border-radius:16px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--stroke);
+      font-weight:700;
+      color:var(--text)
+    }
+
     .fine{font-size:16px}
   </style>
 </head>
+
 <body>
   <div class="panel">
     <h1>Habit Wrapped Generator</h1>
@@ -163,6 +355,11 @@
   <div class="canvasWrap">
     <div id="card" class="canvas">
       <div class="glow"></div>
+      <div class="bgWord">WRAPPED</div>
+
+      <div class="sticker">
+        <div class="scribble" id="hypeLine">you locked in</div>
+      </div>
 
       <div class="header">
         <div class="kicker" id="periodLabel">MONTHLY WRAPPED</div>
@@ -173,7 +370,11 @@
       <div class="grid">
         <div class="card big">
           <div class="label">Total vape free time</div>
-          <div class="value"><span id="totalH">0</span><span class="unit">h</span> <span id="totalM">0</span><span class="unit">m</span></div>
+          <div class="value">
+            <span class="scribbleUnderline">
+              <span id="totalH">0</span><span class="unit">h</span> <span id="totalM">0</span><span class="unit">m</span>
+            </span>
+          </div>
           <div class="hint2"><span id="wins">0</span> wins logged</div>
         </div>
 
